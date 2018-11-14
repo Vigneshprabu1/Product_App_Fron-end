@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import axios from 'axios';
-
+import './home.css'
 class women extends Component{
 
 
@@ -261,7 +261,7 @@ class women extends Component{
                                     <div className="col-md-3 product-men">
                                         <div className="men-pro-item simpleCart_shelfItem">
                                             <div className="men-thumb-item" >
-                                                <img src={item.img} alt="" />
+                                                <img src={item.img} alt="" style={{ width: "250px", height: "300px" }} />
                                                 {/* <img src={item.img} alt="" className="pro-image-back" style={{width:"150",height:"100"}}/> */}
                                                 <div className="men-cart-pro">
                                                     <div className="inner-men-cart-pro">

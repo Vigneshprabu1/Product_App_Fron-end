@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './checkout.css'
 import StripeCheckout from 'react-stripe-checkout';
-
+import StarRatingComponent from 'react-star-rating-component';
+import Modal from 'react-bootstrap4-modal';
 
 const PAYMENT_SERVER_URL = '3RD_PARTY_SERVER';
 const CURRENCY = 'USD';
@@ -47,36 +48,52 @@ class CheckOut extends Component {
                 "delivered_on": "45 minutes",
 
             },
+            modal:false,
             listData1: {},
             combine: [],
             payment: "nothing",
             total: "",
             invoice_number: "",
             delivered_on: "45 mins",
-            image:""
+            image:"",
+            indexOf:0,
         }
         
-        this.state.listData = JSON.parse(localStorage.getItem("final"));
+       this.state.listData = JSON.parse(localStorage.getItem("final"));
+       // this.setState({listData:JSON.parse(localStorage.getItem("final"))});
+        console.log("data 1st enter via local storage ",this.state.listData[0].cust_id)
+       // this.setState(this.state.listData)
         this.state.listData1 = JSON.parse(localStorage.getItem("provider"));
-      if(this.state.userdata){    
+        console.log(this.state.listData1);
+        
+        if(this.state.userdata){    
         this.state.delivery_address=this.state.userdata.address;
       }
       
         var product=Object.assign(this.state.listData1,{quantity:this.state.listData[0].quantity});
+      
         this.state.image =this.state.listData[0].product_image;
         this.state.title =this.state.listData[0].product_name;
+        this.state.rating =this.state.listData[0].rating;
         this.setState({image:this.state.image});
         this.setState({title:this.state.title});
+        this.setState({rating:this.state.rating});
+
+        console.log(this.state.rating);
+        console.log(this.state.listData1)
         
         this.setState({listData1:this.state.listData1})
+     
         this.setState({listData:this.state.listData})
-        console.log(this.state.listData[0])
-        // console.log(this.state.listData2);
+     
+     
+        console.log("list data after value set ",this.state.listData)
+        console.log(this.state.userdata);
         
         this.addrtoggle = this.addrtoggle.bind(this);
         this.changeaddr = this.changeaddr.bind(this);
         if (this.state.listData !== undefined) {
-            this.state.total = this.state.listData[0].quantity * this.state.listData1.price[this.state.listData1.indexOf];
+            this.state.total = this.state.listData[0].quantity * this.state.listData1.price[0];
             console.log(this.state.total)
             this.setState({ total: this.state.total })
            console.log(this.state.listData[0].provider_id);
@@ -84,13 +101,17 @@ class CheckOut extends Component {
         }
     }
     componentDidMount() {
-        if (this.state.userdata != undefined) {
-            axios.get("http://node-api-011.herokuapp.com/orders/" + this.state.userdata.uid).then(response => {
-                console.log(response.data)
-                this.setState({ listData: response.data });
-            });
-        }
+        // if (this.state.userdata != undefined) {
+        //     axios.get("http://node-api-011.herokuapp.com/orders/" + this.state.userdata.uid).then(response => {
+        //         console.log(response.data)
+        //         this.setState({ listData: response.data });
+        //     });
+        //}
+       // console.log("hello",this.state.listData);
     }
+    onStarClick(nextValue, prevValue, name) {
+        this.setState({rating: nextValue});
+      }
 
     login() {
         this.props.history.push('/login');
@@ -109,8 +130,15 @@ class CheckOut extends Component {
         var address = this.state.delivery_address;
         this.setState({ newaddress: false });
         alert("Delivery Address Changed")
+        console.log(this.state.listData);
     }
-    async confirmorder() {
+
+    close(){
+        this.setState({modal:false});
+        this.confirmorder1();
+    }
+ confirmorder() {
+        console.log(this.state.listData);
         
         this.state.listData2.cust_id = this.state.listData[0].cust_id;
         this.state.listData2.product_name = this.state.listData[0].product_name;
@@ -171,7 +199,8 @@ class CheckOut extends Component {
             .catch(400);
     }
     render() {
-        console.log(this.state.listData);
+        const { rating } = this.state;
+        //console.log(this.state.listData);
         const onSuccess = (payment) => {
             // Congratulation, it came here means everything's fine!
             console.log("The payment was succeeded!", payment);
@@ -206,7 +235,7 @@ class CheckOut extends Component {
 
 
         return (
-            <div>
+            <div  >
                 <div className="page-head_agile_info_w3l" style={{ backgroundColor: "#6c757d" }}>
                     <div className="container" >
                         <h3>Checkout <span>Page </span></h3>
@@ -264,61 +293,63 @@ class CheckOut extends Component {
                                         <div id="orders" className="tab-pane fade ">
                                             <div className="row pb-2">
                                                 <div className="col-md-7">
-
-                                                    {/* <p> <strong> Orders</strong></p>
-                                                   
-
-                                                        <p>₹{this.state.listData1.price[this.state.listData1.indexOf]}</p>
-
-                                                        <p>₹{this.state.total}</p>
-                                                  */}
                                                     <div className="container">
                                                         <table id="cart" className="table table-hover table-condensed">
                                                             <thead>
                                                                 <tr>
-                                                                    <th style={{width:"50%"}}>Product</th>
-                                                                    <th style={{width:"10%"}}>Price</th>
-                                                                    <th style={{width:"8%"}}>Quantity</th>
-                                                                    <th style={{width:"22%"}} className="text-center">Subtotal</th>
-                                                                    <th style={{width:"10%"}}></th>
+                                                                    <th style={{ width: "50%" }}>Product</th>
+                                                                    <th style={{ width: "10%" }}>Price</th>
+                                                                    <th style={{ width: "8%" }}>Quantity</th>
+                                                                    <th style={{ width: "22%" }} className="text-center">Subtotal</th>
+                                                                    <th style={{ width: "10%" }}></th>
                                                                 </tr>
                                                             </thead>
+
                                                             <tbody>
                                                                 <tr>
                                                                     <td data-th="Product">
                                                                         <div className="row">
-                                                                            <div className="col-sm-2 hidden-xs"><img src={this.state.image} alt="..." className="img-responsive" /></div>
+                                                                            <div className="col-sm-2  hidden-xs">
+                                                                                <img src={this.state.image} alt="..." className="img-responsive" />
+                                                                            </div>
                                                                             <div className="col-sm-10">
                                                                                 <h4 className="nomargin">{this.state.title}</h4>
+                                                                                <StarRatingComponent
+                                                                                    name="rate2"
+                                                                                    editing={false}
+                                                                                    renderStarIcon={() => <span><i class="fa fa-star" aria-hidden="true"></i></span>}
+                                                                                    starCount={5}
+                                                                                    value={this.state.rating}
+                                                                                />
                                                                                 <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
                                                                             </div>
                                                                         </div>
                                                                     </td>
-                                                                    <td data-th="Price"> ₹{this.state.listData1.price[this.state.listData1.indexOf]}</td>
+                                                                    <td data-th="Price">  ₹{this.state.listData1.price[0]}</td>
                                                                     <td data-th="Quantity">
                                                                         <input type="number" className="form-control text-center" value={this.state.listData1.quantity} />
-                                                                        {/* <p>{this.state.listData.quantity}</p> */}
+                                                                       
                                                                     </td>
-                                                                    <td data-th="Subtotal" className="text-center"> ₹{this.state.listData1.price[this.state.listData1.indexOf]*this.state.listData1.quantity}</td>
+                                                                    <td data-th="Subtotal" className="text-center"> ₹{this.state.listData1.price[0] * this.state.listData1.quantity}</td>
                                                                     <td className="actions" data-th="">
-                                                                        <button className="btn btn-info btn-sm"><i className="fa fa-refresh"></i></button>
-                                                                        <button className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
+                                                                        <button className="btn btn-info btn-sm"><i className="fa fa-refresh"></i></button>&nbsp;
+                                                                        <button className="btn btn-danger btn-sm"><i className="fa fa-trash"></i></button>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
+
                                                             <tfoot>
                                                                 <tr className="visible-xs">
-                                                                    <td className="text-center"><strong>Total ₹{this.state.listData1.price[this.state.listData1.indexOf]}</strong></td>
+                                                                    <td className="text-center"><strong>Total ₹{this.state.total}</strong></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><a href="#" className="btn btn-warning"><i className="fa fa-angle-left"></i> Continue Shopping</a></td>
+                                                                    <td><a href="/" className="btn btn-warning"><i className="fa fa-angle-left"></i> Continue Shopping</a></td>
                                                                     <td colSpan="2" className="hidden-xs"></td>
                                                                     <td className="hidden-xs text-center"><strong>Total ₹{this.state.total}</strong></td>
-                                                                    {/* <td><a href="#" className="btn btn-success btn-block">Checkout <i className="fa fa-angle-right"></i></a></td> */}
+                                                                    <td><a href="/checkout" className="btn btn-success btn-block">Checkout <i className="fa fa-angle-right"></i></a></td>
                                                                 </tr>
                                                             </tfoot>
-                                                        </table>
-                                                    </div>
+                                                        </table></div>
 
                                                 </div>
 
@@ -348,20 +379,7 @@ class CheckOut extends Component {
 
 
                                         <div id="addr" className="tab-pane fade">
-                                            {/* <div className="btn-group" data-toggle="buttons">
-
-                                                <label className="btn btn-success active">
-                                                    <input type="radio" name="options" id="option2" autocomplete="off" chacked  onChange={() => this.setState({ payment: "cod" })} />
-                                                        <span className="glyphicon glyphicon-ok"></span>
-                                                        COD
-			                                            </label>
-
-                                                    <label className="btn btn-primary">
-                                                        <input type="radio" name="options" id="option1" autocomplete="off" onChange={() => this.setState({ payment: "online" })}/>
-                                                            <span className="glyphicon glyphicon-ok"></span>
-                                                            Online
-		                                                	</label>
-                                                            </div> */}
+                                        
                                             <div className="custom-control custom-radio">
                                                 <input type="radio" className="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" onChange={() => this.setState({ payment: "cod" })} />
                                                 <label className="btn btn-primary" htmlFor="defaultGroupExample1">COD</label>
@@ -373,7 +391,7 @@ class CheckOut extends Component {
                                             {this.state.payment === "cod" ? (
                                                 <div style={{ alignItems: "center" }}>
 
-                                                    <br /><button className="btn btn-success" onClick={() => this.confirmorder()}>BuyNow</button>
+                                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button className="btn btn-success" onClick={() => this.confirmorder()}>BuyNow</button>
                                                 </div>
                                             ) : []}
                                             {this.state.payment === "online" ? (
@@ -390,11 +408,8 @@ class CheckOut extends Component {
                                                     zipCode={true}
                                                     billingAddress={true}
                                                 ><br />
-                                                    <button className="btn btn-success"><i className="fab fa-cc-stripe"></i>Pay With Card</button>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button className="btn btn-primary"><i className="fab fa-cc-stripe"></i>&nbsp;Pay With Card</button>
                                                 </StripeCheckout>
-                                                // <span>
-                                                //     <PaypalExpressBtn env={env} client={client} currency={currency} total={this.state.total} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />
-                                                // </span>
                                             ) : []}
 
 
@@ -410,6 +425,27 @@ class CheckOut extends Component {
                 ) : (
                         alert("pls sign in first")
                     )}
+                  
+               
+                <Modal visible={this.state.modal} onClickBackdrop={this.modalBackdropClicked}>
+                    <div className="modal-header">
+                        <h5 className="modal-title">Red Alert!</h5>
+                    </div>
+                    <div className="modal-body">
+                        <StarRatingComponent
+                            name="rate1"
+                            starCount={5}
+                            value={rating}
+                            onStarClick={this.onStarClick.bind(this)}
+                        />
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" onClick={() => this.close()}>
+                            Close
+          </button>
+
+                    </div>
+                </Modal>
             </div>
         );
     }

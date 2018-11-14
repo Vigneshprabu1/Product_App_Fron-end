@@ -54,7 +54,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                {/* <div className="container">
+                <div className="container">
 
 
                     <div className="omb_login">
@@ -62,13 +62,13 @@ class Login extends Component {
                         <div className="row omb_row-sm-offset-3 omb_socialButtons">
                             <div className="col-xs-4 col-sm-3">
                                 <a href="" className="btn omb_btn-facebook">
-                                <i class="fa fa-facebook fa-fw"></i>
+                                <i class="fab fa-facebook fa-fw"></i>
                                     <span className="hidden-xs">Facebook</span>
                                 </a>
-                            </div>
+                            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <div className="col-xs-4 col-sm-2">
                                 <a href="" className="btn  omb_btn-google">
-                                <i class="fa fa-google fa-fw"></i> 
+                                <i class="fab fa-google fa-fw"></i> 
                                     <span className="hidden-xs">Google+</span>
                                 </a>
                             </div>
@@ -113,51 +113,51 @@ class Login extends Component {
 
 
                 </div> 
-            */}
-            <br/><br/>
-             <div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card"><br/>
-        <div class="card-header">
-				<h3>Sign In</h3>
-				<div class="d-flex justify-content-end social_icon">
-					<span><i class="fab fa-facebook-square"></i></span>
-					<span><i class="fab fa-google-plus-square"></i></span>
-					{/* <span><i class="fab fa-twitter-square"></i></span> */}
-				</div>
-			</div>
-			<div class="card-body">
-				<form>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-                        <input type="text" className="form-control" name="username" placeholder="Username" onChange={event => this.setState({ userdata1: Object.assign(this.state.userdata1, { "name": event.target.value }) })} />
-						
+           
+                {/* <br /><br />
+                <div class="container">
+                    <div class="d-flex justify-content-center h-100">
+                        <div class="card"><br />
+                            <div class="card-header">
+                                <h3>Sign In</h3>
+                                <div class="d-flex justify-content-end social_icon">
+                                    <span><i class="fab fa-facebook-square"></i></span>
+                                    <span><i class="fab fa-google-plus-square"></i></span>
+                                   
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <input type="text" className="form-control" name="username" placeholder="Username" onChange={event => this.setState({ userdata1: Object.assign(this.state.userdata1, { "name": event.target.value }) })} />
+
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        </div>
+                                        <input type="password" className="form-control" name="password" placeholder="Password" onChange={event => this.setState({ userdata1: Object.assign(this.state.userdata1, { "password": event.target.value }) })} />
+                                    </div>
+                                    <div class="row align-items-center remember">
+                                        <input type="checkbox" />Remember Me
 					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" className="form-control" name="password" placeholder="Password" onChange={event => this.setState({ userdata1: Object.assign(this.state.userdata1, { "password": event.target.value }) })} />
-					</div>
-					<div class="row align-items-center remember">
-						<input type="checkbox"/>Remember Me
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn"  onClick={() => this.login()+this.refreshPage}/>
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				
-				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Login" class="btn float-right login_btn" onClick={() => this.login() + this.refreshPage} />
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+
+                                <div class="d-flex justify-content-center">
+                                    <a href="#">Forgot your password?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
                 
                         </div>
                         )

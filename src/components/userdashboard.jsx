@@ -60,7 +60,7 @@ class UserDashBoard extends Component {
         )
     }
     logoutHandler = (e) => {
-        localStorage.clear()
+       // localStorage.clear()
         window.location.reload();
         this.props.history.replace('/')
     }

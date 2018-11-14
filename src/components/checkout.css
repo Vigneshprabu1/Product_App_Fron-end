@@ -1,3 +1,7 @@
+
+/* body {
+    margin-top: 10px;
+} */
 .container {
     max-width: 960px;
   }
@@ -16,23 +20,7 @@
 .btn.active span.glyphicon {				
 	opacity: 1;				
 }
-  /* 
-   <div className="page-head_agile_info_w3l" style={{ backgroundColor: "#6c757d" }}>
-                    <div className="container" >
-                        <h3>Checkout <span>Page </span></h3>
 
-                        <div className="services-breadcrumb">
-                            <div className="agile_inner_breadcrumb">
-
-                                <ul className="w3_short">
-                                    <li><a href="/">Home</a><i>|</i></li>
-                                    <li>Checkout Page </li>
-                                </ul>
-                            </div>
-                        </div>
-                       
-                        </div>
-                        </div> */
                         .table>tbody>tr>td, .table>tfoot>tr>td{
                             vertical-align: middle;
                         }
@@ -67,3 +55,14 @@
                             table#cart tfoot td .btn{display:block;}
                             
                         }
+                        /* .container {
+                            max-width: 960px;
+                          }
+                          
+                          .border-top { border-top: 1px solid #e5e5e5; }
+                          .border-bottom { border-bottom: 1px solid #e5e5e5; }
+                          .border-top-gray { border-top-color: #adb5bd; }
+                          
+                          .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+                          
+                          .lh-condensed { line-height: 1.25; } */

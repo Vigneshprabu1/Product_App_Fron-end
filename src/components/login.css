@@ -3,7 +3,7 @@
     For the media queries use @screen-sm-min instead of 768px.
     For .omb_spanOr use @body-bg instead of white.
 */
-/* 
+
 @media (min-width: 768px) {
 	.omb_row-sm-offset-3 div:first-child[class*="col-"] {
 		margin-left: 24%;
@@ -92,16 +92,9 @@
 .btn_continue {
 	width: 100%;
 	text-align: center;
-} */
-@import url('https://fonts.googleapis.com/css?family=Numans');
+}
+/* @import url('https://fonts.googleapis.com/css?family=Numans');
 
-/* html,body{
-background-color:rgb(143, 136, 136) ;
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
-} */
 
 .container{
 height: 100%;
@@ -179,4 +172,4 @@ color: white;
 
 .links a{
 margin-left: 4px;
-}
+} */

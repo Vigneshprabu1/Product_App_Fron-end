@@ -264,12 +264,12 @@ class men extends Component {
 
         <div className="resp-tabs-container" style={{ backgroundColor: "#ffff" }}>
           {/* --/tab_one-- */}
-          <div className="row  " >
+          <div className="" >
             {this.state.item_product.map(item => (
-              <div className="col-md-3 product-men">
+              <div className="col-md-3   product-men">
                 <div className="men-pro-item simpleCart_shelfItem">
                   <div className="men-thumb-item"  >
-                    <img src={item.img} alt="" />
+                    <img src={item.img} alt="" style={{ width: "250px", height: "300px" }} />
                     {/* <img src={item.img} alt="" className="pro-image-back" style={{width:"150",height:"100"}}/> */}
                     <div className="men-cart-pro">
                       <div className="inner-men-cart-pro">

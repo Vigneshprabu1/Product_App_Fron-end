@@ -6,19 +6,22 @@
     "axios": "^0.18.0",
     "react": "^16.5.2",
     "react-avatar-edit": "^0.6.0",
+    "react-bootstrap4-modal": "^1.7.0",
     "react-dom": "^16.5.2",
     "react-native-elements": "^0.19.1",
     "react-paypal-express-checkout": "^1.0.5",
+    "react-places-autocomplete": "^7.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "react-services-injector": "^1.0.0-rc.5",
     "react-split-pane": "^0.1.84",
     "react-splitter-layout": "^3.0.1",
+    "react-star-rating-component": "^1.4.1",
     "react-stripe-checkout": "^2.6.3",
     "styled-components": "^3.4.9"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3002 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
