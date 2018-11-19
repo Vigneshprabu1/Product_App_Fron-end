@@ -240,6 +240,22 @@ class Order extends Component {
         const { rating } = this.state;
         return (
             <div>
+                <div className="page-head_agile_info_w3l">
+          <div className="container">
+            <h3>Order <span>Page  </span></h3>
+
+            <div className="services-breadcrumb">
+              <div className="agile_inner_breadcrumb">
+
+                <ul className="w3_short">
+                  <li><a href="/">Home</a><i>|</i></li>
+                  <li>Order Page</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
                 {/* {this.state.listData2.length!=null?( */}
                 <div>
             {this.state.combine == undefined ? (alert("pls signin first")) : (
@@ -258,12 +274,13 @@ class Order extends Component {
                                                 <div class="tab-pane" id="pic-4"><img src={a.img} style={{ width: "250px", height: "252px" }} /></div>
                                                 <div class="tab-pane" id="pic-5"><img src={a.img} style={{ width: "250px", height: "252px" }} /></div>
                                             </div>
+                                            <br/><br/>
                                             <ul class="preview-thumbnail nav nav-tabs">
-                                                <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src={a.img} style={{ width: "200px", height: "46px" }}/></a></li>
-                                                <li><a data-target="#pic-2" data-toggle="tab"><img src={a.img} style={{ width: "200px", height: "46px" }}/></a></li>
-                                                <li><a data-target="#pic-3" data-toggle="tab"><img src={a.img} style={{ width: "200px", height: "46px" }} /></a></li>
-                                                <li><a data-target="#pic-4" data-toggle="tab"><img src={a.img} style={{ width: "200px", height: "46px" }} /></a></li>
-                                                <li><a data-target="#pic-5" data-toggle="tab"><img src={a.img} style={{ width: "200px", height: "46px" }} /></a></li>
+                                                <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src={a.img} style={{ width: "170px", height: "60px" }}/></a></li>
+                                                <li><a data-target="#pic-2" data-toggle="tab"><img src={a.img} style={{ width: "170px", height: "60px" }}/></a></li>
+                                                <li><a data-target="#pic-3" data-toggle="tab"><img src={a.img} style={{ width: "170px", height: "60px" }} /></a></li>
+                                                <li><a data-target="#pic-4" data-toggle="tab"><img src={a.img} style={{ width: "170px", height: "60px" }} /></a></li>
+                                                <li><a data-target="#pic-5" data-toggle="tab"><img src={a.img} style={{ width: "170px", height: "60px" }} /></a></li>
                                             </ul>
                                         </div>
                                         <div class="details col-md-6">
@@ -291,7 +308,7 @@ class Order extends Component {
                                                 <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
                                             </h5>
                                             <h5 class="colors">colors:
-                                                <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+                                                <span class="color orange " data-toggle="tooltip" title="Not In store"></span>
                                                 <span class="color green" data-toggle="tooltip"></span>
                                                 <span class="color blue" data-toggle="tooltip"></span>
                                             </h5> &nbsp;
@@ -316,8 +333,8 @@ class Order extends Component {
                                 </div>
                             </div>
                         )}
-                        <div class="card mb-3">
-                            <table className="table table-responsive " style={{align:"center",margin:"auto"}} >
+                        <div class="card mb-2 table-responsive">
+                            <table className=" table table-bordered" style={{align:"center",margin:"auto"}}  >
                                 <thead >
                                     <tr>
                                         <th >#</th>   

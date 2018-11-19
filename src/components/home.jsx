@@ -8,7 +8,7 @@ import Mid from "../components/images/mid.jpg";
 import BB1 from '../components/images/bb1.jpg';
 import Bot_1 from '../components/images/bot_1.jpg';
 import Bot_2 from '../components/images/bot_2.jpg';
-import './home.css';
+//import './men.css';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -294,9 +294,10 @@ getaddress(e){
 
 
     return (
-      <div style={{ backgroundColor: "#ffff" }}>
+      <div >
         <div className="header-bot">
           <div className="header-bot_inner_wthreeinfo_header_mid">
+          <br/>
             <div className="col-md-4 header-middle">
               <form >
               <input type="search"  onChange={this.searchHandler} placeholder="search by productname" />
@@ -306,12 +307,12 @@ getaddress(e){
                 <div className="clearfix"></div>
               </form>
             </div>
-
+            
             <div className="col-md-5 logo_agile">
               <h1><a href="/"><span>S</span>martShopping <i className="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
-
             </div>
-          &nbsp;&nbsp;
+            <br/>
+           &nbsp;&nbsp;
             <div className="col-md-2 agileits-social top_content">
             <PlacesAutocomplete
               value={this.state.address}
@@ -320,8 +321,9 @@ getaddress(e){
             >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
       <div className="search-container">
+      <div className="col-md-15 header-middle">
     <form>
-      <input type="text" placeholder="Search.." name="search"  style={{ width:'80%',height:"35px"}}
+      <input type="search" placeholder="Search.." name="search"  style={{ width:'80%',height:"35px"}}
        {...getInputProps({
                   placeholder: 'Search Places ...',
                   className: 'location-search-input',
@@ -329,6 +331,7 @@ getaddress(e){
                 })}/>
       <button type="button"  onClick={()=>this.getmyposition()} style={{width:"20%", height:"35px",content:"\f124"}}><i className="fa fa-location-arrow"></i></button>
     </form>
+    </div>
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {
@@ -547,13 +550,16 @@ getaddress(e){
         <div className="resp-tabs-container" style={{ backgroundColor: "#ffffff" }}>
           <h3 className="wthree_text_info">New <span>Arrivals</span></h3>
           {/* --/tab_one-- */}
-          <div className="">
+          <div className="row">
           {this.state.articles.filter(searchingfor(this.state.searchterm)).map(item => (
               <div className="col-md-3 product-men">
                 <div className="men-pro-item simpleCart_shelfItem">
                   <div className="men-thumb-item " >
                     <img src={item.img} alt="" style={{ width: "250px", height: "300px" }} />
-                    {/* <img src={item.img} alt="" className="pro-image-back" style={{width:"150",height:"100"}}/> */}
+
+                    {/* <img src={item.img} alt="" className="pro-image-front" style={{ width: "250px", height: "300px" }} />
+                    <img src={item.img} alt="" className="pro-image-back" style={{ width: "250px", height: "300px" }} /> */}
+                   
                     <div className="men-cart-pro">
                       <div className="inner-men-cart-pro">
                         <a href="/" className="link-product-add-cart">Quick View</a>
@@ -592,6 +598,60 @@ getaddress(e){
             </div>
           {/* --//tab_one-- */}
         </div>
+        <div className="sale-w3ls">
+                        <div className="container">
+                            <h6>We Offer Flat <span>40%</span> Discount</h6>
+
+                            <a className="hvr-outline-out button2" href={"/single"}>Shop Now </a>
+                        </div>
+                    </div>
+                    {/* <!-- //we-offer --> */}
+                    {/* <!--/grids--> */}
+                    <div className="coupons">
+                        <div className="coupons-grids text-center">
+                            <div className="w3layouts_mail_grid">
+                                <div className="col-md-3 w3layouts_mail_grid_left">
+                                    <div className="w3layouts_mail_grid_left1 hvr-radial-out">
+                                        <i className="fa fa-truck" aria-hidden="true"></i>
+                                    </div>
+                                    <div className="w3layouts_mail_grid_left2">
+                                        <h3>FREE SHIPPING</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </div>
+                                <div className="col-md-3 w3layouts_mail_grid_left">
+                                    <div className="w3layouts_mail_grid_left1 hvr-radial-out">
+                                        <i className="fa fa-headphones" aria-hidden="true"></i>
+                                    </div>
+                                    <div className="w3layouts_mail_grid_left2">
+                                        <h3>24/7 SUPPORT</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </div>
+                                <div className="col-md-3 w3layouts_mail_grid_left">
+                                    <div className="w3layouts_mail_grid_left1 hvr-radial-out">
+                                        <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </div>
+                                    <div className="w3layouts_mail_grid_left2">
+                                        <h3>MONEY BACK GUARANTEE</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </div>
+                                <div className="col-md-3 w3layouts_mail_grid_left">
+                                    <div className="w3layouts_mail_grid_left1 hvr-radial-out">
+                                        <i className="fa fa-gift" aria-hidden="true"></i>
+                                    </div>
+                                    <div className="w3layouts_mail_grid_left2">
+                                        <h3>FREE GIFT COUPONS</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </div>
+                                <div className="clearfix"> </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    {/* <!--grids--> */}
       </div>
 
     );

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import top1 from "../components/images/top1.jpg";
 import top2 from "../components/images/top2.jpg";
 //import { a } from "react-router-dom";
-import './navbar.css'
 
 class NavBar extends Component {
     constructor(props) {
@@ -95,9 +93,9 @@ class NavBar extends Component {
 
                 </nav> */}
 
-                       
 
-                
+
+
                 {/* <div className=" ban-top">
                     <div className="container">
                         <div className="top_nav_left">
@@ -194,25 +192,25 @@ class NavBar extends Component {
                             <nav className="navbar navbar-default">
                                 <div className="container-fluid">
 
-                                    <div className="navbar-header">
+                                    <div className="navbar-header"  >
                                         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                                             <span className="sr-only">Toggle navigation</span>
                                             <span className="icon-bar"></span>
                                             <span className="icon-bar"></span>
                                             <span className="icon-bar"></span>
-                                            
                                         </button>
                                     </div>
 
                                     <div className="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                                         <ul className="nav navbar-nav menu__list">
                                             <li className="active menu__item menu__item--current"><a className="menu__link" href="/">Home <span className="sr-only">(current)</span></a></li>
+                                            {/* <li className=" menu__item"><a className="menu__link" to="about.html">About</a></li> */}
                                             <li className="dropdown menu__item">
                                                 <a href="" className="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                                     Men's wear <span className="caret"></span></a>
                                                 <ul className="dropdown-menu multi-column columns-3">
                                                     <div className="agile_inner_drop_nav_info">
-                                                        <div className="col-sm-7 multi-gd-img1 multi-gd-text ">
+                                                        <div className="col-sm-6 multi-gd-img1 multi-gd-text ">
                                                             <a href="men"><img src={top2} alt=" " /></a>
                                                         </div>
                                                         <div className="col-sm-3 multi-gd-img">
@@ -267,29 +265,33 @@ class NavBar extends Component {
                                                                 <li><a href={"/women"}>Swimwear</a></li>
                                                             </ul>
                                                         </div> */}
-                                                        <div className="col-sm-7 multi-gd-img multi-gd-text">
+                                                        <div className="col-sm-6 multi-gd-img multi-gd-text ">
                                                             <a href={"/women"}><img src={top1} alt=" " /></a>
                                                         </div>
+                                                        <div className="clearfix"></div>
                                                     </div>
                                                 </ul>
-                                                </li>
+                                            </li>
                                             <li className=" menu__item"><a className="menu__link" href={"/cart"}><i className="fa fa-shopping-cart">Cart</i></a></li>
                                             <li className=" menu__item"><a className="menu__link" href="/checkout">Checkout</a></li>
-                                            
+
                                             {this.state.userdata == undefined ? (
                                                 <div >
-                                                    <ul className="nav navbar-nav menu__list"> <li className=" menu__item"><a className="menu__link" href={"/login"}><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Login</a></li>
+                                                    <ul className="nav navbar-nav menu__list">
+                                                        <li className=" menu__item"><a className="menu__link" href={"/login"}><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Login</a></li>
                                                         <li className=" menu__item"><a className="menu__link" href={"/signup"}><span class="glyphicon glyphicon-user"></span>&nbsp;Signup</a></li>
                                                     </ul>
                                                 </div>
-                                            ):(
-                                                 <div >
-                                                    <ul className="nav navbar-nav menu__list">
-                                                        <li className=" menu__item"><a className="menu__link" href={"/userdash"}><i className="fa fa-user-circle fa-1x" aria-hidden="true"><span></span>&nbsp;&nbsp;{this.state.userdata.name}</i></a></li>
-                                                        <li className=" menu__item"><a className="menu__link" href="" onClick={e => this.logoutHandler(e)}><i className="fa fa-power-off" aria-hidden="true">&nbsp;&nbsp;Logout</i></a></li>
-                                                    </ul>
-                                                </div>
-                                            )}
+                                            ) : (
+                                                    <div >
+                                                        <ul className="nav navbar-nav menu__list">
+                                                            <li className=" menu__item"><a className="menu__link" href={"/userdash"}><i className="fa fa-user-circle fa-1x" aria-hidden="true"><span></span>&nbsp;&nbsp;{this.state.userdata.name}</i></a></li>
+                                                            <li className=" menu__item"><a className="menu__link" href="" onClick={e => this.logoutHandler(e)}><i className="fa fa-power-off" aria-hidden="true">&nbsp;&nbsp;Logout</i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                )}
+
+                                            {/* <li className=" menu__item"><a className="menu__link" to={"/contact"}>Contact</a></li> */}
                                         </ul>
                                     </div>
                                 </div>
@@ -297,17 +299,15 @@ class NavBar extends Component {
                         </div>
                         {/* <div className="top_nav_right">
                             <div className="wthreecartaits wthreecartaits2 cart cart box_1">
-                                <form >
-                                 <button className="w3view-cart" type="submit"  value=""><i className="fa fa-cart-arrow-down" aria-hidden="true"></i></button> 
-                                    
+                                <form action="/cart" className="last">
+                                    <button className="w3view-cart" type="submit"  value=""><i className="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
                                 </form>
 
-                            </div> 
+                            </div>
                         </div> */}
                         <div className="clearfix"></div>
                     </div>
                 </div>
-               
 
             </div>
         )

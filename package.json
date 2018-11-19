@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "react": "^16.5.2",
     "react-avatar-edit": "^0.6.0",
+    "react-bootstrap-modal": "^4.2.0",
     "react-bootstrap4-modal": "^1.7.0",
     "react-dom": "^16.5.2",
     "react-native-elements": "^0.19.1",

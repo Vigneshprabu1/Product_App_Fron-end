@@ -13,7 +13,7 @@ class Cart extends Component {
     }
     // this.get=this.get.bind(this);
     this.state.combine = JSON.parse(localStorage.getItem("final"));
-    console.log(this.state.combine[0]);
+    console.log(this.state.combine);
     // this.setState({combine:this.state.combine})
     this.state.listData1 = JSON.parse(localStorage.getItem("provider"));
   }
@@ -25,7 +25,9 @@ class Cart extends Component {
     window.location.reload();
     this.props.history.push("/");
   }
-  
+  Reload(){
+    window.location.reload();
+  }
   
   // onStarClick(nextValue, prevValue, name) {
   //   this.setState({rating: nextValue});
@@ -44,18 +46,36 @@ class Cart extends Component {
     console.log((this.state.combine));
     if (this.state.combine == []) {
       console.log('alling get');
-
     }
     return (
       <div>
+        <div className="page-head_agile_info_w3l">
+          <div className="container">
+            <h3>Cart <span>Page  </span></h3>
+
+            <div className="services-breadcrumb">
+              <div className="agile_inner_breadcrumb">
+
+                <ul className="w3_short">
+                  <li><a href="/">Home</a><i>|</i></li>
+                  <li>Cart Page</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <br/>
         <div className="container">
-        {this.state.combine!=undefined ? (   this.state.combine.map(a =>
+        <hr/>
+        {this.state.combine!=undefined ? (this.state.combine.map(a =>
+        
           <table id="cart" className="table table-hover table-condensed">
             <thead>
               <tr>
                 <th style={{ width: "50%" }}>Product</th>
                 <th style={{ width: "10%" }}>Price</th>
-                <th style={{ width: "8%" }}>Quantity</th>
+                <th style={{ width: "8%"  }}>Quantity</th>
                 <th style={{ width: "22%" }} className="text-center">Subtotal</th>
                 <th style={{ width: "10%" }}></th>
               </tr>
@@ -86,9 +106,9 @@ class Cart extends Component {
                   <input type="number" className="form-control text-center" value={a.quantity} />
                   {/* <p>{this.state.listData.quantity}</p> */}
                 </td>
-                <td data-th="Subtotal" className="text-center"> ₹ {a.price * a.quantity}</td>
+                <td data-th="Subtotal" className="text-center"> ₹{a.price * a.quantity}</td>
                 <td className="actions" data-th="">
-                  <button className="btn btn-info btn-sm"><i className="fa fa-refresh"></i></button>&nbsp;
+                  <button className="btn btn-info btn-sm" onClick={()=>this.Reload()}><i className="fa fa-refresh"></i></button>&nbsp;
                   <button className="btn btn-danger btn-sm" onClick={() => this.Remove(a.id)}><i className="fa fa-trash"></i></button>
                 </td>
               </tr>

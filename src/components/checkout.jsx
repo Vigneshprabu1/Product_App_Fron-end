@@ -48,56 +48,56 @@ class CheckOut extends Component {
                 "delivered_on": "45 minutes",
 
             },
-            modal:false,
+            modal: false,
             listData1: {},
             combine: [],
             payment: "nothing",
             total: "",
             invoice_number: "",
             delivered_on: "45 mins",
-            image:"",
-            indexOf:0,
+            image: "",
+            indexOf: 0,
         }
-        
-       this.state.listData = JSON.parse(localStorage.getItem("final"));
-       // this.setState({listData:JSON.parse(localStorage.getItem("final"))});
-        console.log("data 1st enter via local storage ",this.state.listData[0].cust_id)
-       // this.setState(this.state.listData)
+
+        this.state.listData = JSON.parse(localStorage.getItem("final"));
+        // this.setState({listData:JSON.parse(localStorage.getItem("final"))});
+      //  console.log("data 1st enter via local storage ", this.state.listData[0].cust_id)
+        // this.setState(this.state.listData)
         this.state.listData1 = JSON.parse(localStorage.getItem("provider"));
-        console.log(this.state.listData1);
-        
-        if(this.state.userdata){    
-        this.state.delivery_address=this.state.userdata.address;
-      }
-      
-        var product=Object.assign(this.state.listData1,{quantity:this.state.listData[0].quantity});
-      
-        this.state.image =this.state.listData[0].product_image;
-        this.state.title =this.state.listData[0].product_name;
-        this.state.rating =this.state.listData[0].rating;
-        this.setState({image:this.state.image});
-        this.setState({title:this.state.title});
-        this.setState({rating:this.state.rating});
+        console.log(this.state.listData);
+
+        if (this.state.userdata) {
+            this.state.delivery_address = this.state.userdata.address;
+        }
+        if(this.state.listData!=undefined){
+        var product = Object.assign(this.state.listData1, { quantity: this.state.listData[0].quantity });
+
+        this.state.image = this.state.listData[0].product_image;
+        this.state.title = this.state.listData[0].product_name;
+        this.state.rating = this.state.listData[0].rating;
+        this.setState({ image: this.state.image });
+        this.setState({ title: this.state.title });
+        this.setState({ rating: this.state.rating });
 
         console.log(this.state.rating);
         console.log(this.state.listData1)
-        
-        this.setState({listData1:this.state.listData1})
-     
-        this.setState({listData:this.state.listData})
-     
-     
-        console.log("list data after value set ",this.state.listData)
+
+        this.setState({ listData1: this.state.listData1 })
+
+        this.setState({ listData: this.state.listData })
+
+
+        console.log("list data after value set ", this.state.listData)
         console.log(this.state.userdata);
-        
+        }
         this.addrtoggle = this.addrtoggle.bind(this);
         this.changeaddr = this.changeaddr.bind(this);
-        if (this.state.listData !== undefined) {
+        if (this.state.listData != undefined) {
             this.state.total = this.state.listData[0].quantity * this.state.listData1.price[0];
             console.log(this.state.total)
             this.setState({ total: this.state.total })
-           console.log(this.state.listData[0].provider_id);
-            
+            console.log(this.state.listData[0].provider_id);
+
         }
     }
     componentDidMount() {
@@ -107,11 +107,11 @@ class CheckOut extends Component {
         //         this.setState({ listData: response.data });
         //     });
         //}
-       // console.log("hello",this.state.listData);
+        // console.log("hello",this.state.listData);
     }
     onStarClick(nextValue, prevValue, name) {
-        this.setState({rating: nextValue});
-      }
+        this.setState({ rating: nextValue });
+    }
 
     login() {
         this.props.history.push('/login');
@@ -133,13 +133,24 @@ class CheckOut extends Component {
         console.log(this.state.listData);
     }
 
-    close(){
-        this.setState({modal:false});
+    close() {
+        this.setState({ modal: false });
         this.confirmorder1();
     }
- confirmorder() {
+
+    Remove() {
+        // localStorage.setItem("final");
+        localStorage.removeItem("final");
+        window.location.reload();
+        this.props.history.push("/");
+      }
+      
+    confirmorder() {
+        this.setState({modal:true});
+    }
+ async   confirmorder1() {
         console.log(this.state.listData);
-        
+
         this.state.listData2.cust_id = this.state.listData[0].cust_id;
         this.state.listData2.product_name = this.state.listData[0].product_name;
         this.state.listData2.product_image = this.state.listData[0].product_image;
@@ -182,8 +193,8 @@ class CheckOut extends Component {
         }).catch(error => console.log(error)
         )
         axios.get('http://api.msg91.com/api/sendhttp.php?country=91&sender=MSGIND&route=4&mobiles=' + this.state.listData2.customer_mobile_number + '&authkey=243177AyunGcNGL5bc6ed47&message=' + this.state.userdata.name + ' has purchased. Total amount is ' + this.state.listData2.total, { headers: { 'crossDomain': true, } });
-    
-    
+
+
     }
 
 
@@ -236,7 +247,7 @@ class CheckOut extends Component {
 
         return (
             <div  >
-                <div className="page-head_agile_info_w3l" style={{ backgroundColor: "#6c757d" }}>
+                <div className="page-head_agile_info_w3l" >
                     <div className="container" >
                         <h3>Checkout <span>Page </span></h3>
 
@@ -252,7 +263,7 @@ class CheckOut extends Component {
 
                     </div>
                 </div>
-                {this.state.userdata != undefined ? (
+                {/* {this.state.userdata != undefined ? (
                     <div id="manoj">
                         <section className="container py-4" >
                             <div className="row">
@@ -445,8 +456,151 @@ class CheckOut extends Component {
           </button>
 
                     </div>
-                </Modal>
+                </Modal> */}
+                {/* <!-- checkout page --> */}
+
+
+
+    {this.state.userdata != undefined && this.state.listData !=undefined ? (
+                 <div class="privacy">
+                <div class="container">
+                    {/* <!-- tittle heading --> */}
+                    <h3 class="tittle-w3l">Checkout
+				<span class="heading-style">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </span>
+                    </h3>
+                    {/* <!-- //tittle heading --> */}
+                    <div class="checkout-right">
+                        <h4>Your shopping cart contains-
+					<span>Products List</span>
+                        </h4>
+                        <div class="table-responsive">
+                            <table class="timetable_sub">
+                                <thead>
+                                    <tr>
+                                        <th>SL No.</th>
+                                        <th>Product</th>
+                                        <th>Quality</th>
+                                        <th>Product Name</th>
+
+                                        <th>Price</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="rem1">
+                                        <td class="invert">1</td>
+                                        <td class="invert-image">
+                                            <a href="single2.html">
+                                                <img src={this.state.image} alt=" " class="img-responsive" />
+                                            </a>
+                                        </td>
+                                        <td class="invert">
+                                            <div class="quantity">
+                                                <div class="quantity-select">
+                                                    <div class="entry value-minus">&nbsp;</div>
+                                                    <div class="entry value">
+                                                        <span>{this.state.listData1.quantity}</span>
+                                                    </div>
+                                                    <div class="entry value-plus active">&nbsp;</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="invert">{this.state.title}</td>
+                                        <td class="invert">₹{this.state.total}</td>
+                                        <td class="invert">
+                                       {(this.state.listData.map(a=>
+                                        
+                                            <div class="rem">
+                                                <div class="close1"> <button className="btn btn-danger btn-sm" onClick={() => this.Remove(a.id)}><i className="fa fa-trash"></i></button> </div>
+                                            </div>
+                                       ))}
+                                        </td>
+                                    </tr>
+                                    
+                                   </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="checkout-left">
+                        <div class="address_form_agile">
+                            <h4>Add a new Details</h4>
+                            <form action="/payment" method="post" class="creditly-card-form agileinfo_form">
+                                {/* <div class="creditly-wrapper wthree, w3_agileits_wrapper">
+                                    <div class="information-wrapper">
+                                        <div class="first-row">
+                                            <div class="controls">
+                                                <input class="billing-address-name" type="text" name="name" placeholder="Full Name" required="" />
+                                            </div>
+                                            <div class="w3_agileits_card_number_grids">
+                                                <div class="w3_agileits_card_number_grid_left">
+                                                    <div class="controls">
+                                                        <input type="text" placeholder="Mobile Number" name="number" required="" />
+                                                    </div>
+                                                </div>
+                                                <div class="w3_agileits_card_number_grid_right">
+                                                    <div class="controls">
+                                                        <input type="text" placeholder="Landmark" name="landmark" required="" />
+                                                    </div>
+                                                </div>
+                                                <div class="clear"> </div>
+                                            </div>
+                                            <div class="controls">
+                                                <input type="text" placeholder="Town/City" name="city" required="" />
+                                            </div>
+                                            <div class="controls">
+                                                <select class="option-w3ls">
+                                                    <option>Select Address type</option>
+                                                    <option>Office</option>
+                                                    <option>Home</option>
+                                                    <option>Commercial</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button class="submit check_out">Delivery to this Address</button>
+                                    </div>
+                                </div> */}
+                                <div className="list-group">
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        <label><b>Your address</b></label>
+                                                        <p>{this.state.delivery_address}</p>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <button onClick={() => this.addrtoggle()} className="btn btn-outline-primary">Add new address</button><br /><br />
+                                                        {this.state.newaddress ? (
+                                                            <div>
+                                                                <textarea placeholder="write something..." required onChange={event => this.setState({ delivery_address: event.target.value })} />
+                                                                <input type="submit" onClick={() => this.changeaddr()} className="btn btn-outline-secondary" />
+                                                            </div>
+                                                        ) :[]}
+                                                    </div>
+                                                </div>
+                                            </div>
+                            </form>
+                            <div class="checkout-right-basket">
+                                <a href="/payment">Make a Payment
+							<span class="fa fa-hand-o-right" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
             </div>
+    ):(
+        alert("You have not selected any items and provide your valid data", this.props.history.push("/"))
+        )}
+                
+        {/* <!---728x90---> */ }
+
+            </div>
+           
+
         );
     }
 }

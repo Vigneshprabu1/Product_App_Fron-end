@@ -9,6 +9,7 @@ import Signup from './components/signup';
 import Login from './components/login';
 import Men from './components/men';
 import Women  from './components/women';
+import Payment from './components/payment';
  const Routes =() => (
      <BrowserRouter>
         <Switch>
@@ -21,6 +22,7 @@ import Women  from './components/women';
             <Route path='/login' component={Login}></Route>
             <Route path='/men' component={Men}/>
             <Route path='/women' component={Women}/>
+            <Route path='/payment' component={Payment}/>
 
         </Switch>
     </BrowserRouter>
